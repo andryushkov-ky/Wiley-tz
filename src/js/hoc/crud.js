@@ -6,33 +6,45 @@ function crud(Component) {
             todos: []
         };
 
+        componentDidMount() {
+            this.get();
+        }
+
+        get = () => {
+            const todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+            this.setState({
+                todos: todos
+            })
+        }
+
+        save = (todos) => {
+            this.setState({
+                todos
+            }, localStorage.setItem('todos', JSON.stringify(todos)));
+        }
+
         create = (val) => {
             const newTodos = [...this.state.todos, {
                 text: val,
                 isCompleted: false
             }];
 
-            this.setState({
-                todos: newTodos
-            });
-        };
+            this.save(newTodos);
+        }
 
         remove = (index) => {
             const newTodos = [...this.state.todos];
             newTodos.splice(index, 1);
 
-            this.setState({
-                todos: newTodos
-            });
+            this.save(newTodos);
         }
 
         update = ({index, field, value}) => {
             const newTodos = [...this.state.todos];
             newTodos[index][field] = value;
 
-            this.setState({
-                todos: newTodos
-            });
+            this.save(newTodos);
         }
 
         render() {
