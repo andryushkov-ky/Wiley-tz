@@ -7,11 +7,11 @@ const App = () => {
     const [todos, setTodos] = useState([
         {
             text: "task 1",
-            completed: false
+            isCompleted: false
         },
         {
             text: "task 2",
-            completed: false
+            isCompleted: false
         }
     ]);
 
@@ -26,7 +26,7 @@ const App = () => {
 
     const onToggle = (index) => {
         const newTodos = [...todos];
-        newTodos[index].completed = !newTodos[index].completed;
+        newTodos[index].isCompleted = !newTodos[index].isCompleted;
 
         setTodos(newTodos);
     }

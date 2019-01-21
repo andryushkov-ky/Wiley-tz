@@ -12,7 +12,7 @@ const Todo = ({
         <div className="todo">
             <input
                 type="checkbox"
-                checked={todo.completed}
+                checked={todo.isCompleted}
                 onChange={() => onToggle(index)} />
             <div className="todo__text">
                 { todo.text }
