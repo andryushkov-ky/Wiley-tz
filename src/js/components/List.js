@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 
 import Todo from './Todo';
 
-const List = ({ todos }) => {
+const List = (props) => {
     return (
-        <div className="todo-list">
-            {todos.map((todo, index) =>
+        <div className = "todo-list">
+            {props.todos.map((todo, index) =>
                 <Todo
                     key = { index }
                     todo = { todo }
-                    index = { index }/>
+                    index = { index }
+                    { ...props } />
             )}
         </div>
     );

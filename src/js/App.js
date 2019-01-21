@@ -24,10 +24,32 @@ const App = () => {
         setTodos(newTodos);
     };
 
+    const onToggle = (index) => {
+        const newTodos = [...todos];
+        newTodos[index].completed = !newTodos[index].completed;
+
+        setTodos(newTodos);
+    }
+
+    const onRemove = (index) => {
+        const newTodos = [...todos];
+        newTodos.splice(index, 1);
+
+        setTodos(newTodos);
+    }
+
+    const onUpdate = (index) => {
+        console.log("onUpdate", index);
+    }
+
     return (
         <div className="container">
             <Form addTodo={ addTodo }/>
-            <List todos={ todos }/>
+            <List
+                todos={ todos }
+                onRemove={ onRemove }
+                onUpdate={ onUpdate }
+                onToggle={ onToggle }/>
         </div>
     );
 }
