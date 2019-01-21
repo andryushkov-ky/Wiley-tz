@@ -17,13 +17,21 @@ const Form = ({ addTodo }) => {
     }
 
     return (
-        <form onSubmit={ handleSubmit }>
-            <input
-                onChange={ handleInput }
-                type="text"
-                value={ value }/>
-            <button type="submit">Add</button>
-        </form>
+        <div className="addform">
+            <form onSubmit={ handleSubmit }>
+                <input
+                    className="main-input"
+                    placeholder="Task"
+                    type="text"
+                    onChange={ handleInput }
+                    value={ value } />
+                <button
+                    className="main-btn"
+                    type="submit">
+                    Add
+                </button>
+            </form>
+        </div>
     );
 }
 

@@ -7,12 +7,18 @@ import crud from './hoc/crud'
 
 const App = ({ todos, create, update, remove }) => {
     return (
-        <div className="container">
-            <Form addTodo={ create }/>
-            <List
-                todos={ todos }
-                onRemove={ remove }
-                onUpdate={ update } />
+        <div className="app">
+            <header className="header">
+                TODOs
+            </header>
+
+            <div className="main">
+                <Form addTodo={ create }/>
+                <List
+                    todos={ todos }
+                    onRemove={ remove }
+                    onUpdate={ update } />
+            </div>
         </div>
     );
 }

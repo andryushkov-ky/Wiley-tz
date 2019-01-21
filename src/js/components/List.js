@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Todo from './Todo';
+import Item from './Item';
 
 const List = (props) => {
     return (
-        <div className = "todo-list">
+        <div className = "list">
             {props.todos.map((todo, index) =>
-                <Todo
+                <Item
                     key = { index }
                     todo = { todo }
                     index = { index }

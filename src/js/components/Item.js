@@ -1,12 +1,13 @@
 import React, { Component, useState } from 'react';
 
-const Todo = ({
+const Item = ({
         todo,
         index,
         onToggle,
         onRemove,
         onUpdate
     }) => {
+
     const [editingMode, setEditingMode] = useState(false);
     const [value, setValue] = useState(todo.text);
 
@@ -26,31 +27,32 @@ const Todo = ({
 
     const renderTextItem = () => {
         return (
-            <div className="todo__text-mode">
-                <input
-                    type="checkbox"
-                    checked={ todo.isCompleted }
-                    onChange={ () => onUpdate({ index, field: "isCompleted", value: !todo.isCompleted }) } />
-                <div className="todo__text">
-                    { todo.text }
+            <div className="show-mode">
+                <div className="wrap-text">
+                    <div
+                        className={`check toggle-${ todo.isCompleted }`}
+                        onClick={ () => onUpdate({ index, field: "isCompleted", value: !todo.isCompleted }) } >
+                    </div>
+                    <span className="text">{ todo.text }</span>
                 </div>
-                <button
-                    className="todo__btn todo__btn--del"
-                    onClick={ () => setEditingMode(!editingMode) }>
-                    Edit
-                </button>
-                <button
-                    className="todo__btn todo__btn--del"
-                    onClick={ () => onRemove(index) }>
-                    Delete
-                </button>
+
+                <div className="sub-panel">
+                    <span
+                        className="edit"
+                        onClick={ () => setEditingMode(!editingMode) }>
+                    </span>
+                    <span
+                        className="delete"
+                        onClick={ () => onRemove(index) }>
+                    </span>
+                </div>
             </div>
         )
     }
 
     const renderEditItem = () => {
         return (
-            <div className="todo__edit-mode">
+            <div className="edit-mode">
                 <form onSubmit={ handleSubmit }>
                     <input
                         className="task-input"
@@ -68,7 +70,7 @@ const Todo = ({
     }
 
     return (
-        <div className="todo">
+        <div className="item">
             {
                 !editingMode && renderTextItem()
             }
@@ -79,4 +81,4 @@ const Todo = ({
     );
 }
 
-export default Todo;
+export default Item;
