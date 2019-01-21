@@ -3,6 +3,8 @@ import React, { Component, useState } from 'react';
 import List from './components/List'
 import Form from './components/Form'
 
+import crud from './hoc/crud'
+
 const App = () => {
     const [todos, setTodos] = useState([
         {
@@ -57,4 +59,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default crud(App);
