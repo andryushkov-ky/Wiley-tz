@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
-class App extends Component {
-  render() {
+import List from './components/List'
+
+const App = () => {
+    const [todos, setTodos] = useState([
+        {
+            text: "task 1",
+            completed: false
+        },
+        {
+            text: "task 2",
+            completed: false
+        }
+    ]);
+
     return (
-      <div className="App">
-        <h1>Hello</h1>
-      </div>
+        <div className="container">
+            <List todos={todos}/>
+        </div>
     );
-  }
 }
 
 export default App;
