@@ -7,21 +7,68 @@ const Todo = ({
         onRemove,
         onUpdate
     }) => {
+    const [editingMode, setEditingMode] = useState(false);
+    const [value, setValue] = useState('');
+
+    const handleInput = () => {
+
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    const renderTextItem = () => {
+        return (
+            <div className="todo__text-mode">
+                <input
+                    type="checkbox"
+                    checked={todo.isCompleted}
+                    onChange={() => onToggle(index)} />
+                <div className="todo__text">
+                    { todo.text }
+                </div>
+                <button
+                    className="todo__btn todo__btn--del"
+                    onClick={() => setEditingMode(!editingMode)}>
+                    Edit
+                </button>
+                <button
+                    className="todo__btn todo__btn--del"
+                    onClick={() => onRemove(index)}>
+                    Delete
+                </button>
+            </div>
+        )
+    }
+
+    const renderEditItem = () => {
+        return (
+            <div className="todo__edit-mode">
+                <form onSubmit={handleSubmit}>
+                    <input
+                        className="task-input"
+                        placeholder="Edit task"
+                        value={value}
+                        onChange={handleInput}/>
+                    <button
+                        className="task-btn"
+                        type="submit">
+                        Edit
+                    </button>
+                </form>
+            </div>
+        )
+    }
 
     return (
         <div className="todo">
-            <input
-                type="checkbox"
-                checked={todo.isCompleted}
-                onChange={() => onToggle(index)} />
-            <div className="todo__text">
-                { todo.text }
-            </div>
-            <button
-                className="todo__btn todo__btn--del"
-                onClick={() => onRemove(index)}>
-                Удалить
-            </button>
+            {
+                !editingMode && renderTextItem()
+            }
+            {
+                editingMode && renderEditItem()
+            }
         </div>
     );
 }
