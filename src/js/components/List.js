@@ -1,12 +1,15 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
+
+import Todo from './Todo';
 
 const List = ({ todos }) => {
     return (
         <div className="todo-list">
             {todos.map((todo, index) =>
-                <div className="todo" key={index}>
-                    {todo.text}
-                </div>
+                <Todo
+                    key = { index }
+                    todo = { todo }
+                    index = { index }/>
             )}
         </div>
     );

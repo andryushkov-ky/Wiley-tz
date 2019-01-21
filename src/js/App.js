@@ -26,8 +26,8 @@ const App = () => {
 
     return (
         <div className="container">
-            <Form addTodo={addTodo}/>
-            <List todos={todos}/>
+            <Form addTodo={ addTodo }/>
+            <List todos={ todos }/>
         </div>
     );
 }
