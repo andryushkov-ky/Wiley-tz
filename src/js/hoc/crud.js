@@ -25,10 +25,10 @@ function crud(Component) {
         }
 
         create = (val) => {
-            const newTodos = [...this.state.todos, {
+            const newTodos = [{
                 text: val,
                 isCompleted: false
-            }];
+            }, ...this.state.todos];
 
             this.save(newTodos);
         }
