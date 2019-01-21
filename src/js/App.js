@@ -15,8 +15,13 @@ const App = () => {
         }
     ]);
 
-    const addTodo = (todo) => {
-        console.log(todo);
+    const addTodo = (val) => {
+        const newTodos = [...todos, {
+            text: val,
+            isCompleted: false
+        }];
+
+        setTodos(newTodos);
     };
 
     return (

@@ -10,7 +10,10 @@ const Form = ({ addTodo }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        addTodo(value);
+        if (value.trim()) {
+            addTodo(value);
+            setValue("");
+        }
     }
 
     return (
