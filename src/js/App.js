@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 
 import List from './components/List'
+import Form from './components/Form'
 
 const App = () => {
     const [todos, setTodos] = useState([
@@ -14,8 +15,13 @@ const App = () => {
         }
     ]);
 
+    const addTodo = (todo) => {
+        console.log(todo);
+    };
+
     return (
         <div className="container">
+            <Form addTodo={addTodo}/>
             <List todos={todos}/>
         </div>
     );
