@@ -8,14 +8,20 @@ const Todo = ({
         onUpdate
     }) => {
     const [editingMode, setEditingMode] = useState(false);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(todo.text);
 
-    const handleInput = () => {
-
+    const handleInput = ({ currentTarget }) => {
+        setValue(currentTarget.value);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (value.trim() && value !== todo.text) {
+            onUpdate(index, value);
+        }
+
+        setEditingMode(!editingMode)
     }
 
     const renderTextItem = () => {
@@ -23,19 +29,19 @@ const Todo = ({
             <div className="todo__text-mode">
                 <input
                     type="checkbox"
-                    checked={todo.isCompleted}
-                    onChange={() => onToggle(index)} />
+                    checked={ todo.isCompleted }
+                    onChange={ () => onToggle(index) } />
                 <div className="todo__text">
                     { todo.text }
                 </div>
                 <button
                     className="todo__btn todo__btn--del"
-                    onClick={() => setEditingMode(!editingMode)}>
+                    onClick={ () => setEditingMode(!editingMode) }>
                     Edit
                 </button>
                 <button
                     className="todo__btn todo__btn--del"
-                    onClick={() => onRemove(index)}>
+                    onClick={ () => onRemove(index) }>
                     Delete
                 </button>
             </div>
@@ -45,12 +51,12 @@ const Todo = ({
     const renderEditItem = () => {
         return (
             <div className="todo__edit-mode">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={ handleSubmit }>
                     <input
                         className="task-input"
                         placeholder="Edit task"
-                        value={value}
-                        onChange={handleInput}/>
+                        value={ value }
+                        onChange={ handleInput }/>
                     <button
                         className="task-btn"
                         type="submit">

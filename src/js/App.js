@@ -38,8 +38,11 @@ const App = () => {
         setTodos(newTodos);
     }
 
-    const onUpdate = (index) => {
-        console.log("onUpdate", index);
+    const onUpdate = (index, text) => {
+        const newTodos = [...todos];
+        newTodos[index].text = text;
+
+        setTodos(newTodos);
     }
 
     return (
