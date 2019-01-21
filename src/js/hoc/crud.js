@@ -6,8 +6,42 @@ function crud(Component) {
             todos: []
         };
 
+        create = (val) => {
+            const newTodos = [...this.state.todos, {
+                text: val,
+                isCompleted: false
+            }];
+
+            this.setState({
+                todos: newTodos
+            });
+        };
+
+        remove = (index) => {
+            const newTodos = [...this.state.todos];
+            newTodos.splice(index, 1);
+
+            this.setState({
+                todos: newTodos
+            });
+        }
+
+        update = ({index, field, value}) => {
+            const newTodos = [...this.state.todos];
+            newTodos[index][field] = value;
+
+            this.setState({
+                todos: newTodos
+            });
+        }
+
         render() {
-            return <Component {...this.props} />
+            return <Component
+                todos = { this.state.todos }
+                create = { this.create }
+                update = { this.update }
+                remove = { this.remove }
+                { ...this.props } />
         }
     }
 

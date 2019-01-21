@@ -18,7 +18,7 @@ const Todo = ({
         e.preventDefault();
 
         if (value.trim() && value !== todo.text) {
-            onUpdate(index, value);
+            onUpdate({ index, value, field: 'text' });
         }
 
         setEditingMode(!editingMode)
@@ -30,7 +30,7 @@ const Todo = ({
                 <input
                     type="checkbox"
                     checked={ todo.isCompleted }
-                    onChange={ () => onToggle(index) } />
+                    onChange={ () => onUpdate({ index, field: "isCompleted", value: !todo.isCompleted }) } />
                 <div className="todo__text">
                     { todo.text }
                 </div>
